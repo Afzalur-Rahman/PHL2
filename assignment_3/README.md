@@ -24,10 +24,13 @@ This is a **Library Management System** where we used Express.js,Typescript,Mong
 
 ## Tech Used:
 
--Express.js for backend framework.
--Typescript
--MongoDb+MOngoose for database+ODM
--Postman for testing the API endpoints.
+### -Express.js for backend framework.
+
+### -Typescript
+
+### -MongoDb+MOngoose for database+ODM
+
+### -Postman for testing the API endpoints.
 
 ## To run the project:
 
