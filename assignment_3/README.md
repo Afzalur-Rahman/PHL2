@@ -6,28 +6,28 @@ This is a **Library Management System** where we used Express.js,Typescript,Mong
 
 ## Through REST API endpoints users can add,view,delete,borrow books.This project covers:
 
-# (a) add new books, get a list of all books,find by ID
+### (a) add new books, get a list of all books,find by ID
 
-# (b) Update or Delete books
+### (b) Update or Delete books
 
-# (c) Borrow Books with available copies
+### (c) Borrow Books with available copies
 
-# (d) Filter books by genre,sort responses or limit them
+### (d) Filter books by genre,sort responses or limit them
 
-# (e)Try catch for clean responses
+### (e)Try catch for clean responses
 
-# (f)Aggregation pipeline to show borrowed summary
+### (f)Aggregation pipeline to show borrowed summary
 
-# (g) Mongoose methods and middleware.
+### (g) Mongoose methods and middleware.
 
 ---
 
 ## Tech Used:
 
-*Express.js for backend framework.
-*Typescript
-*MongoDb+MOngoose for database+ODM
-*Postman for testing the API endpoints.
+-Express.js for backend framework.
+-Typescript
+-MongoDb+MOngoose for database+ODM
+-Postman for testing the API endpoints.
 
 ## To run the project:
 
