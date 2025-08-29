@@ -4,11 +4,7 @@ backend:  https://library-backend-nine-chi.vercel.app/
 
 
 
-
-
-
-
-Library ManageMent System
+# Library ManageMent System
 
 
 
@@ -18,7 +14,7 @@ inventory.
 
 
 
-In this full stack app we can:
+## In this full stack app we can:
 -Add books
 
 -Edit books info
@@ -29,7 +25,8 @@ In this full stack app we can:
 
 
 
-To build this project this following tech stacks has been used:
+ ## The following technologies have been used to build this project: 
+ 
 -ReactJS
 
 -Redux
@@ -48,7 +45,7 @@ To build this project this following tech stacks has been used:
 
 
 
-To run this App:
+## To run this App:
 
 
 -Clone this repo
@@ -65,7 +62,7 @@ OR
 
 
 
-Go to the vercel links provided on top 
+Go to the vercel links provided at the top 
 
 
 
