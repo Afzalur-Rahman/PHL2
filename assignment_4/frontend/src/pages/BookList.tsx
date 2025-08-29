@@ -40,10 +40,18 @@ const BookList: React.FC = () => {
   const navigate = useNavigate();
 
   if (isLoading) return <p>Loading books...</p>;
-  if (error) return <p>Error loading books</p>;
+  if (error) {
+    console.error("Error details:", error);
+    return (
+      <div>
+        <p>Error loading books</p>
+        <p>Error details: {JSON.stringify(error)}</p>
+      </div>
+    );
+  }
 
   const handleDelete = async (id: string) => {
-    if (window.confirm("Are you sure to delete this book?")) {
+    if (window.confirm("Delete this book?")) {
       await deleteBook(id);
     }
   };
@@ -54,7 +62,7 @@ const BookList: React.FC = () => {
       <table className="min-w-full border border-gray-200">
         <thead className="bg-gray-200">
           <tr className="border px-2 py-1">
-            <th >Title</th>
+            <th>Title</th>
             <th>Author</th>
             <th>Genre</th>
             <th>ISBN</th>

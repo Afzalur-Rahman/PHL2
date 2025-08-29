@@ -96,9 +96,17 @@ export interface BorrowSummaryItem {
   totalQuantity: number;
 }
 
+const API_BASE_URL =
+  (import.meta.env.VITE_API_URL || "http://localhost:5000").replace(/\/$/, "") +
+  "/api";
+
+console.log("API_BASE_URL:", API_BASE_URL);
+console.log("Environment variables:", import.meta.env);
+console.log("Full books URL:", API_BASE_URL + "/books");
+
 export const booksApi = createApi({
   reducerPath: "booksApi",
-  baseQuery: fetchBaseQuery({ baseUrl: "http://localhost:5000/api" }),
+  baseQuery: fetchBaseQuery({ baseUrl: API_BASE_URL }),
   tagTypes: ["Books", "Borrows"],
   endpoints: (builder) => ({
     getBooks: builder.query<Book[], void>({
@@ -115,7 +123,7 @@ export const booksApi = createApi({
     getBook: builder.query<Book, string>({
       query: (id) => `/books/${id}`,
       transformResponse: (response: { data: Book }) => response.data,
-      providesTags: (result, error, id) => [{ type: "Books", id }],
+      providesTags: (_, __, id) => [{ type: "Books", id }],
     }),
     addBook: builder.mutation<Book, Partial<Book>>({
       query: (body) => ({
@@ -133,7 +141,7 @@ export const booksApi = createApi({
         body,
       }),
       transformResponse: (response: { data: Book }) => response.data,
-      invalidatesTags: (result, error, { id }) => [{ type: "Books", id }],
+      invalidatesTags: (_, __, { id }) => [{ type: "Books", id }],
     }),
     deleteBook: builder.mutation<{ success: boolean; id: string }, string>({
       query: (id) => ({

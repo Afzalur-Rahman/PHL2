@@ -29,6 +29,7 @@ export const createBook = async (req: Request, res: Response) => {
 
 export const getAllBooks = async (req: Request, res: Response) => {
   try {
+    console.log("getAllBooks called");
     const {
       filter,
       sortBy = "createdAt",
@@ -45,7 +46,11 @@ export const getAllBooks = async (req: Request, res: Response) => {
     const sortOrder: any = {};
     sortOrder[String(sortBy)] = sort === "asc" ? 1 : -1;
 
+    console.log("Query:", query);
+    console.log("Sort order:", sortOrder);
+
     const books = await Book.find(query).sort(sortOrder).limit(Number(limit));
+    console.log("Found books:", books.length);
 
     res.json({
       success: true,

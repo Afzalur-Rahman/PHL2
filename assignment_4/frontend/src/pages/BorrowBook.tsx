@@ -23,7 +23,7 @@ const BorrowBook: React.FC = () => {
       return;
     }
     if (!dueDate) {
-      alert("Please select a due date.");
+      alert("please choose a date");
       return;
     }
 
@@ -40,8 +40,7 @@ const BorrowBook: React.FC = () => {
       navigate("/borrow-summary");
     } catch (error: any) {
       console.error("error details:", error);
-      console.error("Error status:", error?.status);
-      console.error("Error data:", error?.data);
+   
 
       if (error?.data?.message) {
         alert(`Failed: ${error.data.message}`);

@@ -13,14 +13,14 @@ exports.borrowBookSummary = exports.borrowBook = exports.deleteBookById = export
 const book_model_1 = require("../models/book.model");
 const borrow_model_1 = require("../models/borrow.model");
 // import { Borrow } from "../models/borrow.model";
-//createBook function (p1)
+//create Book function (p1)
 const createBook = (req, res) => __awaiter(void 0, void 0, void 0, function* () {
     try {
         const book = new book_model_1.Book(req.body);
         yield book.save();
         res.status(201).json({
-            message: "Book is created",
             success: true,
+            message: "Book created successfully",
             data: book,
         });
     }
@@ -46,7 +46,7 @@ const getAllBooks = (req, res) => __awaiter(void 0, void 0, void 0, function* ()
         const books = yield book_model_1.Book.find(query).sort(sortOrder).limit(Number(limit));
         res.json({
             success: true,
-            message: "Books retrived succefully",
+            message: "Books retrieved successfully",
             data: books,
         });
     }
@@ -59,6 +59,7 @@ const getAllBooks = (req, res) => __awaiter(void 0, void 0, void 0, function* ()
     }
 });
 exports.getAllBooks = getAllBooks;
+//p3 (get books by id)
 const getBookById = (req, res) => __awaiter(void 0, void 0, void 0, function* () {
     try {
         const { bookId } = req.params;
@@ -72,7 +73,7 @@ const getBookById = (req, res) => __awaiter(void 0, void 0, void 0, function* ()
         }
         res.json({
             success: true,
-            message: "Book retrived succesfully",
+            message: "Book retrieved successfully",
             data: book,
         });
     }
@@ -101,10 +102,11 @@ const updateBookById = (req, res) => __awaiter(void 0, void 0, void 0, function*
             });
             return;
         }
+        console.log(updatedBook);
         res.json({
             success: true,
             message: "Book updated successfully",
-            data: null,
+            data: updatedBook,
         });
     }
     catch (error) {
@@ -132,8 +134,8 @@ const deleteBookById = (req, res) => __awaiter(void 0, void 0, void 0, function*
         }
         res.json({
             success: true,
-            message: "Book deleted Successfullt",
-            data: deletedBook,
+            message: "Book deleted Successfully",
+            data: null,
         });
     }
     catch (error) {
@@ -148,7 +150,8 @@ exports.deleteBookById = deleteBookById;
 //borrow a book function (p6)
 const borrowBook = (req, res) => __awaiter(void 0, void 0, void 0, function* () {
     try {
-        const { book: bookId, quantity, dueDate } = req.body;
+        const { bookId } = req.params;
+        const { quantity, dueDate } = req.body;
         const book = yield book_model_1.Book.findById(bookId);
         if (!book) {
             res.status(404).json({
@@ -189,6 +192,7 @@ const borrowBook = (req, res) => __awaiter(void 0, void 0, void 0, function* () 
     }
 });
 exports.borrowBook = borrowBook;
+// p7(summary borrowed books)
 const borrowBookSummary = (req, res) => __awaiter(void 0, void 0, void 0, function* () {
     try {
         const summary = yield borrow_model_1.Borrow.aggregate([
@@ -205,14 +209,15 @@ const borrowBookSummary = (req, res) => __awaiter(void 0, void 0, void 0, functi
             {
                 $project: {
                     _id: 0,
-                    book: { title: "$bookInfo.title", isbn: "$bookInfo.isbn" },
+                    bookTitle: "$bookInfo.title",
+                    isbn: "$bookInfo.isbn",
                     totalQuantity: 1,
                 },
             },
         ]);
         res.json({
             success: true,
-            message: "Borrowed books info retrieved ",
+            message: "Borrowed books summary retrieved successfully",
             data: summary,
         });
     }

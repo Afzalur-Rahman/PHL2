@@ -17,7 +17,9 @@ const AddBook: React.FC = () => {
   });
 
   const handleChange = (
-    e: React.ChangeEvent<HTMLInputElement | HTMLTextAreaElement>
+    e: React.ChangeEvent<
+      HTMLInputElement | HTMLTextAreaElement | HTMLSelectElement
+    >
   ) => {
     const { name, value, type } = e.target;
     const checked = (e.target as HTMLInputElement).checked;
@@ -41,8 +43,7 @@ const AddBook: React.FC = () => {
       navigate("/books");
     } catch (error: any) {
       console.error("Add book error details:", error);
-      console.error("Error status:", error?.status);
-      console.error("Error data:", error?.data);
+    
 
       if (error?.data?.message) {
         alert(`Failed: ${error.data.message}`);
